@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react'
 import Dropdown from './dropdown/Dropdown';
+import Card from './card/Card';
 function Container(){
     const API_KEY= 'pub_153994c3c454bfceb8eb228a254ccfea8227f';
     const [dropdownValue,setDropdownValue] = useState('business');
@@ -12,12 +13,16 @@ function Container(){
     }
 
     useEffect(()=>{
-       // callAPI()
+        callAPI()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dropdownValue])
 
     
     return(<><h1>My News</h1>
-    <Dropdown valueDropDown={dropdownValue} setDropdownValue={setDropdownValue}/></>)
+    <Dropdown valueDropDown={dropdownValue} setDropdownValue={setDropdownValue}/>
+    {
+        news.map((newToRead)=> (<Card data={newToRead} key={newToRead.title}/>))
+    }
+    </>)
 }
 export default Container
